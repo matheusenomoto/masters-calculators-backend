@@ -1,6 +1,13 @@
 <%- include ('partials/headerhtml.ejs') %>
-<body>
-    <%- include ('partials/navbar.ejs') %>
-    <div>Hello from ec2 - there is no limit!</div>
-</body>
-<%- include ('partials/footerhtml.ejs') %>
+
+    <body>
+        <%- include ('partials/navbar.ejs') %>
+
+            <% cards.forEach((card)=> { %>
+                <h3>
+                    <%= card.title %>
+                </h3>
+                <% }) %>
+
+    </body>
+    <%- include ('partials/footerhtml.ejs') %>

@@ -12,9 +12,14 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//app
+const { cards } = require('./src/constants')
+
 //routes
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', {
+        cards: cards,
+    })
 })
 
 
