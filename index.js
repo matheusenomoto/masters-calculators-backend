@@ -12,6 +12,29 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+//aws sdk
+var AWS = require("aws-sdk");
+AWS.config.update({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    accessSecretKey: process.env.AWS_ACCESS_KEY_ID,
+    region: process.env.AWS_REGION,
+  });
+
+//s3
+s3 = new AWS.S3({apiVersion: '2006-03-01'});
+
+var bucketParams = {
+    Bucket : 'masters-calculators-pub',
+  };
+
+s3.listObjects(bucketParams, function(err, data) {
+    if (err) {
+      console.log("Error", err);
+    } else {
+      console.log("Success", data);
+    }
+  });
+
 //app
 const { cards } = require('./src/constants')
 
